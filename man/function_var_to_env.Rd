@@ -14,9 +14,6 @@ function_var_to_env(called_fun_txt, to_env = globalenv())
 \value{
 No return value.
 }
-\description{
-Puts all of the function variables in a specified environment
-}
 \section{Side effects}{
 
 \itemize{

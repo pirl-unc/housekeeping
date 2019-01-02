@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_script_path.R
 \name{get_script_path}
 \alias{get_script_path}
-\title{Takes a local package and assembles it}
+\title{Gets the path of the script that runs it}
 \usage{
 get_script_path()
 }

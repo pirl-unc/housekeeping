@@ -12,6 +12,3 @@ get_loaded_package_version(package_name)
 \value{
 T/F on if the named package is in sessionInfo()$otherPkgs
 }
-\description{
-Tells which version of the named package is loaded.
-}

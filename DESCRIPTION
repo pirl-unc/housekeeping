@@ -1,5 +1,5 @@
 Package: housekeeping
-Version: 0.0-01
+Version: 0.0-02
 Title: housekeeping tools for R
 Description: Basic debugging and package building tasks.
 Author: Dante Bortone <dantebortone@gmail.com>

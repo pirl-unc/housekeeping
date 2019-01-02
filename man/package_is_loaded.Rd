@@ -12,6 +12,3 @@ package_is_loaded(package_name)
 \value{
 T/F on if the named packate is in sessionInfo()$otherPkgs
 }
-\description{
-Tells if package_name is currently loaded
-}

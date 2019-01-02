@@ -137,6 +137,11 @@ get_package_version_listed_in_description = function(my_dir){
 }
 
 
+# assemble_package(package_name = "binfotron", my_version = "0.0-01",
+#                  my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/binfotron")
+# 
+# assemble_package(package_name = "housekeeping", my_version = "0.0-02",
+#                  my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # assemble_package
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

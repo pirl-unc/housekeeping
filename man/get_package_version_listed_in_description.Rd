@@ -12,6 +12,3 @@ get_package_version_listed_in_description(my_dir)
 \value{
 Version of the package found in the DESCRIPTION file
 }
-\description{
-Gets the package version listed in the package description file
-}

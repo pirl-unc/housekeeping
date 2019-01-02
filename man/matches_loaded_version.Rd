@@ -14,6 +14,3 @@ matches_loaded_version(package_name, my_version)
 \value{
 T/F on if the named package is in sessionInfo()
 }
-\description{
-Tells if my_version matches the version returned from \code{get_loaded_package_version}
-}

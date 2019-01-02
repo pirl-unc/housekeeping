@@ -12,9 +12,6 @@ remove_package_from_all_libraries(package_name)
 \value{
 No return value.
 }
-\description{
-Searches all libraries in .libPaths() and deletes the named package in all of them
-}
 \section{Side effects}{
 
 \itemize{
