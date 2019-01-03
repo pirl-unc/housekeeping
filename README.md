@@ -44,6 +44,8 @@ Then run:
 `function_var_to_env(called_fun = fun_b_txt)`  
 `function_to_function(fun_name_1 = "fun_b", fun_name_2 = "fun_a")`  
 
+
+
 ## Finding script locations  
 
 ### get_script_path  
@@ -59,10 +61,12 @@ This way the path will be assigned to the function when the function is sourced.
 I used this SO question as a starting point: [rscript-determine-path-of-the-executing-script](https://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script)
 
 
+
 ## Package Tools
 
 ### detach_package  
 Detaches every instance of a package  
+
 
 ### remove_package_from_all_libraries  
 nt  
@@ -70,14 +74,18 @@ nt
 ### package_is_loaded  
 Tells if a package is loaded  
 
+
 ### get_loaded_package_version  
 nt  
+
 
 ### matches_loaded_version  
 Tells if entered version matches that of the loaded version  
 
+
 ### get_package_version_listed_in_description  
 nt  
+
 
 ### assemble_package  
 Save lots of steps in making new packages  
