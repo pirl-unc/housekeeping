@@ -11,8 +11,8 @@ These two functions are designed to help with that:
 ### function_var_to_env  
 Takes the text used to call a function and calls all of the variables in that function into whatever environment you want, global for me.  If any variables weren't used in the call it uses the default function values and puts those in the environment so you can debug the function in the global environment. For example:  
 `fun_a = function(var_a = 10, var_b = "b"){`  
-`  print(paste0("var_a: ", var_a))`  
-`  print(paste0("var_b: ", var_b))`  
+` print(paste0("var_a: ", var_a))`  
+` print(paste0("var_b: ", var_b))`  
 `}`  
   
 At this point the variables aren't in the global env  
@@ -46,7 +46,7 @@ Then run:
 
 ## Finding script locations  
 
-###get_script_path  
+### get_script_path  
 It's often helpful for scripts to know where they are.  This way they can write files in their same folder even if that folder is moved.  This script is an attempt to do that.  It should work if the script containing get_script_path is sourced from: an Rscript, Rstudio console, or RStudio source.  It should also work if run through R studio.  If called from a function it will take the path from the script that called it.  Also if it is sourced form a source, it will take the path of the parent source.  For use in functions I use it like this:  
 
 `sample_script_path = get_script_path()`  
@@ -65,16 +65,19 @@ I used this SO question as a starting point: [rscript-determine-path-of-the-exec
 Detaches every instance of a package  
 
 ### remove_package_from_all_libraries  
+nt  
 
 ### package_is_loaded  
 Tells if a package is loaded  
 
 ### get_loaded_package_version  
+nt  
 
 ### matches_loaded_version  
 Tells if entered version matches that of the loaded version  
 
 ### get_package_version_listed_in_description  
+nt  
 
 ### assemble_package  
 Save lots of steps in making new packages  
