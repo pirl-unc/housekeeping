@@ -137,11 +137,19 @@ get_package_version_listed_in_description = function(my_dir){
 }
 
 
-# assemble_package(package_name = "binfotron", my_version = "0.0-01",
-#                  my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/binfotron")
+# In R:
 # 
-# assemble_package(package_name = "housekeeping", my_version = "0.0-02",
+# assemble_package(package_name = "binfotron", my_version = "0.0-01",my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/binfotron")
+# 
+# assemble_package(package_name = "housekeeping", my_version = "0.0-01",
 #                  my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
+# 
+# In terminal:
+#   cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/binfotron
+# my_comment="Added tar package."
+# git commit -am "$my_comment"; git push
+# git tag -a 0.0-01 -m "$my_comment"; git push -u origin --tags
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # assemble_package
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
