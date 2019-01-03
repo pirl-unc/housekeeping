@@ -12,6 +12,9 @@ detach_package(package_name)
 \value{
 No return value.
 }
+\description{
+Unloads packages
+}
 \section{Side effects}{
 
 \itemize{

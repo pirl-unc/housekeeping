@@ -6,7 +6,8 @@ Author: Dante Bortone <dantebortone@gmail.com>
 Maintainer: Dante Bortone <dantebortone@gmail.com>
 Depends:
     magrittr,
-    stringr
+    stringr,
+    devtools
 License: MIT License
 NeedsCompilation: no
 RoxygenNote: 6.1.1

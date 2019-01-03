@@ -210,7 +210,7 @@ assemble_package = function(
     file.remove(old_package)
   }
   # if this has na error we have to change the name bakc so we don't think it's been updated
-  roxygenize(my_dir)
+  devtools::document(my_dir)
   cat("Expect the following inert warning:\n'/usr/lib/R/bin/R'/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file --no-environ --no-save --no-restore --quiet CMD build  \
           '<some path>' --no-resave-data --no-manual \n")
   build_location = build(my_dir, path = my_dir)

@@ -16,6 +16,9 @@ assemble_package(package_name, my_version, my_dir)
 \value{
 No return value
 }
+\description{
+Takes a local package and assembles it
+}
 \section{Side effects}{
 
 \itemize{
