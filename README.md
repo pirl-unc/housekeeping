@@ -18,35 +18,43 @@ fun_a = function(var_a = 10, var_b = "b"){
 }  
 ```
 
-At this point the variables aren't in the global env  
-`var_a     # Error: object 'var_a' not found`  
-`var_b     # Error: object 'var_b' not found`  
-  
+At this point the variables aren't in the global env
+```R
+var_a     # Error: object 'var_a' not found
+var_b     # Error: object 'var_b' not found
+```
+
 Now assign the function text you want to dig into to a variable and run function_var_to_env  
-`fun_a_txt = 'fun_a(var_a=1.5)'`  
-`function_var_to_env(fun_a_txt)`  
+fun_a_txt = 'fun_a(var_a=1.5)'
+function_var_to_env(fun_a_txt)
    
 These variables are now in the global environment.
-`var_a     # 1.5`  
-`var_b     # 'b'`  
-  
+```R
+var_a     # 1.5
+var_b     # 'b'
+```
+
 ### function_to_function  
 If the example for function_var_to_env was run then we can run all the code up to fun_name_2 and function_to_function on fun_name_2 by using this function:  
-`fun_b = function(var_a=1){`  
-`  print("start fun_b ----------")`  
-`  print(paste0("var_a: ", var_a))`  
-`  print(paste0("changed var_a: "))`  
-`  var_a = var_a + 1`  
-`  print(paste0("var_a: ", var_a))`  
-`  print("running fun_a ----------")`  
-`  fun_a(`  
-`    var_a = var_a`  
-`  )`  
-`}`  
-Then run:  
-`function_var_to_env(called_fun = fun_b_txt)`  
-`function_to_function(fun_name_1 = "fun_b", fun_name_2 = "fun_a")`  
+```R
+fun_b = function(var_a=1){
+  print("start fun_b ----------")
+  print(paste0("var_a: ", var_a))
+  print(paste0("changed var_a: "))
+  var_a = var_a + 1
+  print(paste0("var_a: ", var_a))
+  print("running fun_a ----------")
+  fun_a(
+    var_a = var_a
+  )
+}
+```
 
+Then run:  
+```R
+function_var_to_env(called_fun = fun_b_txt)
+function_to_function(fun_name_1 = "fun_b", fun_name_2 = "fun_a")
+```
 
 
 ## Finding script locations  
@@ -54,10 +62,12 @@ Then run:
 ### get_script_path  
 It's often helpful for scripts to know where they are.  This way they can write files in their same folder even if that folder is moved.  This script is an attempt to do that.  It should work if the script containing get_script_path is sourced from: an Rscript, Rstudio console, or RStudio source.  It should also work if run through R studio.  If called from a function it will take the path from the script that called it.  Also if it is sourced form a source, it will take the path of the parent source.  For use in functions I use it like this:  
 
-`sample_script_path = get_script_path()`  
-`do_something = function(script_path = sample_script_path){`  
-`  print(script_path)`  
-`}`  
+```R
+sample_script_path = get_script_path()
+do_something = function(script_path = sample_script_path){
+  print(script_path)
+}
+```
 
 This way the path will be assigned to the function when the function is sourced.
 
