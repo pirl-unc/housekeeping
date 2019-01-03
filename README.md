@@ -11,8 +11,8 @@ These two functions are designed to help with that:
 ### function_var_to_env  
 Takes the text used to call a function and calls all of the variables in that function into whatever environment you want, global for me.  If any variables weren't used in the call it uses the default function values and puts those in the environment so you can debug the function in the global environment. For example:  
 `fun_a = function(var_a = 10, var_b = "b"){`  
-` print(paste0("var_a: ", var_a))`  
-` print(paste0("var_b: ", var_b))`  
+`    print(paste0("var_a: ", var_a))`  
+`    print(paste0("var_b: ", var_b))`  
 `}`  
   
 At this point the variables aren't in the global env  
