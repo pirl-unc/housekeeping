@@ -10,6 +10,8 @@ function_to_function(fun_name_1, fun_name_2, to_env = globalenv())
 \item{fun_name_1}{Name of the outmost function as a string.}
 
 \item{fun_name_2}{Name of the inner function as a string.}
+
+\item{to_env}{Environment in which the arguments should be called.}
 }
 \value{
 No return value.

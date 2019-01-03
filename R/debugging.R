@@ -28,7 +28,7 @@
 function_var_to_env = function(
   called_fun_txt, 
   to_env = globalenv()
-  ){
+){
   # puts all of the function calls in to_env
   # get the called funciton arguemnts
   list_start = stringr::str_locate(called_fun_txt, "\\(")[1]
@@ -36,7 +36,7 @@ function_var_to_env = function(
   
   # get the default arguments
   fun_name = substring(called_fun_txt, 1, (list_start-1))
-  arg_txt = utlis::capture.output(eval(parse(text = paste0("args(",fun_name, ")"))))
+  arg_txt = utils::capture.output(eval(parse(text = paste0("args(",fun_name, ")"))))
   arg_txt = arg_txt[arg_txt != "NULL"]
   arg_list = eval(parse(text = gsub("^function \\(", "list(", arg_txt)))
   
@@ -44,9 +44,9 @@ function_var_to_env = function(
   arg_list[names(called_arg_list)] = called_arg_list
   
   for ( list_index in 1:length(arg_list)){
-      var_name = names(arg_list)[list_index]
-      var_value = arg_list[[list_index]]
-      assign(var_name, var_value, envir = to_env)
+    var_name = names(arg_list)[list_index]
+    var_value = arg_list[[list_index]]
+    assign(var_name, var_value, envir = to_env)
   }
   return(invisible(NULL))  # no return
   
@@ -65,6 +65,7 @@ function_var_to_env = function(
 #' 
 #' @param fun_name_1 Name of the outmost function as a string.
 #' @param fun_name_2 Name of the inner function as a string.
+#' @param to_env Environment in which the arguments should be called.
 #' 
 #' @return No return value.  
 #' 
@@ -91,10 +92,10 @@ function_to_function = function(
   fun_name_1, 
   fun_name_2, 
   to_env = globalenv()
-  ){
-  library(utils)
+){
+  # library(utils)
   
-  fun_text = utlis::capture.output(eval(parse(text = fun_name_1)))
+  fun_text = utils::capture.output(eval(parse(text = fun_name_1)))
   
   fun_text = trimws(fun_text)
   fun_text = sapply(fun_text, function(each_line){
@@ -123,7 +124,7 @@ function_to_function = function(
   function_var_to_env(fun_2_text, to_env = to_env)
   
   return(invisible(NULL))  # no return
-
+  
 }
 
 

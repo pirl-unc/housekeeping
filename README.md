@@ -104,8 +104,8 @@ nt
 Save lots of steps in making new packages  
 * Modifies the version listed in the DESCRIPTION file  
 * Deletes the tar file from any older packages
-* Runs roxygen on the package
-* Builds the package to make tar.gz file
+* Runs devtools::document on the package
+* If should_build, builds the package to make tar.gz file
 * Tries to load the package.  If it doesn't work, the DESCRIPTION file goes back to the original version
 
 

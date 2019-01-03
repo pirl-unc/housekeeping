@@ -1,5 +1,5 @@
 Package: housekeeping
-Version: 0.0-03
+Version: 0.0-04
 Title: Basic Debugging and Package Building Tasks
 Description: Tools for debugging, script path finding and package maintanance.
 Authors@R: 
@@ -11,9 +11,10 @@ Depends:
     magrittr,
     stringr,
     devtools,
-    utils
+    utils,
+    rstudioapi
 BugReports: https://github.com/DanteBortone/housekeeping/issues
-License: MIT
+License: MIT + file LICENSE
 NeedsCompilation: no
 RoxygenNote: 6.1.1
 Encoding: UTF-8

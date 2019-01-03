@@ -4,7 +4,7 @@
 \alias{assemble_package}
 \title{Takes a local package and assembles it}
 \usage{
-assemble_package(package_name, my_version, my_dir)
+assemble_package(package_name, my_version, my_dir, should_build = FALSE)
 }
 \arguments{
 \item{package_name}{string name of the package}
@@ -12,6 +12,8 @@ assemble_package(package_name, my_version, my_dir)
 \item{my_version}{string version the package should be named}
 
 \item{my_dir}{directory path to the package}
+
+\item{should_build}{flag to indicate whether a tar.gz should be built or not}
 }
 \value{
 No return value
