@@ -12,7 +12,7 @@ matches_loaded_version(package_name, my_version)
 \item{my_version}{version to test if it matches the one loaded in the session}
 }
 \value{
-T/F on if the named package is in sessionInfo()
+T/F on if the named package is in \code{utils::sessionInfo()}
 }
 \description{
 Tells if my_version matches the version returned from \code{get_loaded_package_version}

@@ -10,7 +10,7 @@ get_loaded_package_version(package_name)
 \item{package_name}{string name of the package}
 }
 \value{
-T/F on if the named package is in sessionInfo()$otherPkgs
+T/F on if the named package is in utils::sessionInfo()$otherPkgs
 }
 \description{
 Tells which version of the named package is loaded.

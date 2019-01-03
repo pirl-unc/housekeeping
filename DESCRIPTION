@@ -1,14 +1,20 @@
 Package: housekeeping
-Version: 0.0-02
-Title: housekeeping tools for R
-Description: Basic debugging and package building tasks.
-Author: Dante Bortone <dantebortone@gmail.com>
-Maintainer: Dante Bortone <dantebortone@gmail.com>
+Version: 0.0-03
+Title: Basic Debugging and Package Building Tasks
+Description: Tools for debugging, script path finding and package maintanance.
+Authors@R: 
+    person(given = "Dante",
+           family = "Bortone",
+           role = c("aut", "cre"),
+           email = "dantebortone@gmail.com")
 Depends:
     magrittr,
     stringr,
-    devtools
-License: MIT License
+    devtools,
+    utils
+BugReports: https://github.com/DanteBortone/housekeeping/issues
+License: MIT
 NeedsCompilation: no
 RoxygenNote: 6.1.1
 Encoding: UTF-8
+LazyData: false

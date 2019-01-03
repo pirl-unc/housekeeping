@@ -22,8 +22,8 @@ Runs function_1 from the beginning of \code{fun_name_1} to the start of
 \section{Side effects}{
 
 \itemize{
-  \item runs the first line of function_1 up to the first useage of function_2 in \code{to_env}
-  \item runs \code{\link{function_var_to_env}} on functnio 2 in  \code{to_env}
+  \item runs the first line of function_1 up to the first useage of function_2 in to_env
+  \item runs \code{\link{function_var_to_env}} on function 2 in to_env
 }
 }
 

@@ -10,7 +10,7 @@ package_is_loaded(package_name)
 \item{package_name}{string name of the package}
 }
 \value{
-T/F on if the named packate is in sessionInfo()$otherPkgs
+T/F on if the named packate is in \code{utils::sessionInfo()$otherPkgs}
 }
 \description{
 Tells if package_name is currently loaded

@@ -39,7 +39,7 @@ detach_package = function(package_name){
 remove_package_from_all_libraries = function(package_name){
   for(lib_path in .libPaths()){
     if(package_name %in% list.dirs(lib_path, full.names = FALSE, recursive = FALSE)){
-      inert_err_msg = capture.output(remove.packages(package_name, lib_path))
+      inert_err_msg = utils::capture.output(utils::remove.packages(package_name, lib_path))
     }
   }
 }
@@ -52,11 +52,11 @@ remove_package_from_all_libraries = function(package_name){
 #' 
 #' @param package_name string name of the package
 #' 
-#' @return T/F on if the named packate is in sessionInfo()$otherPkgs
+#' @return T/F on if the named packate is in \code{utils::sessionInfo()$otherPkgs}
 #' 
 #' @export
 package_is_loaded = function(package_name){
-  loaded_packages = sessionInfo()
+  loaded_packages = utils::sessionInfo()
   running_packages =  names(loaded_packages$otherPkgs)
   return(package_name %in% running_packages)
 }
@@ -69,13 +69,13 @@ package_is_loaded = function(package_name){
 #' 
 #' @param package_name string name of the package
 #' 
-#' @return T/F on if the named package is in sessionInfo()$otherPkgs
+#' @return T/F on if the named package is in utils::sessionInfo()$otherPkgs
 #' 
 #' @export
 get_loaded_package_version = function(package_name){
   my_return = NA
   if(package_is_loaded(package_name)){
-    loaded_packages = sessionInfo()
+    loaded_packages = utils::sessionInfo()
     running_package =  loaded_packages$otherPkgs[[package_name]]
     my_return = running_package$Version
   }
@@ -91,7 +91,7 @@ get_loaded_package_version = function(package_name){
 #' @param my_version version to test if it matches the one loaded in the session 
 #' @param package_name string name of the package to check
 #' 
-#' @return T/F on if the named package is in sessionInfo()  
+#' @return T/F on if the named package is in \code{utils::sessionInfo()}
 #' 
 #' @export
 matches_loaded_version = function(
@@ -101,7 +101,7 @@ matches_loaded_version = function(
   my_return = FALSE
   loaded_version = get_loaded_package_version(package_name = package_name)
   if(!is.na(loaded_version)){
-    my_return = loaded_version == BINFOTRON_VERSION
+    my_return = loaded_version == my_version
   }
   return(my_return)
 }
@@ -141,14 +141,14 @@ get_package_version_listed_in_description = function(my_dir){
 # 
 # assemble_package(package_name = "binfotron", my_version = "0.0-01",my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/binfotron")
 # 
-# assemble_package(package_name = "housekeeping", my_version = "0.0-01",
+# assemble_package(package_name = "housekeeping", my_version = "0.0-03",
 #                  my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 # 
 # In terminal:
 #   cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/binfotron
 # my_comment="Added tar package."
 # git commit -am "$my_comment"; git push
-# git tag -a 0.0-01 -m "$my_comment"; git push -u origin --tags
+# git tag -a 0.0-03 -m "$my_comment"; git push -u origin --tags
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # assemble_package
@@ -158,6 +158,8 @@ get_package_version_listed_in_description = function(my_dir){
 #' @param package_name string name of the package
 #' @param my_version string version the package should be named
 #' @param my_dir directory path to the package
+#' 
+#' @importFrom magrittr "%>%"
 #' 
 #' @return No return value
 #' 
@@ -177,10 +179,6 @@ assemble_package = function(
   my_version,
   my_dir
   ){
-  
-  library(magrittr)
-  library(devtools)
-  library(roxygen2)
   
   # need to update version on description file  
   description_file_path = file.path(my_dir, "DESCRIPTION")
@@ -203,41 +201,37 @@ assemble_package = function(
     writeLines(description_lines, con = description_file_path, sep = "\n", useBytes = TRUE)
   }
   # remove old zipped package so it isn't built into the the new one
-  old_packages = list.files(my_dir, pattern = ".tar.gz$", full.names = T)
-  if(length(old_packages) > 0){
-    message("Removing older compressed packages:")
-    for(old_package in old_packages) message(paste0("* ", old_package))
-    file.remove(old_package)
-  }
+  # old_packages = list.files(my_dir, pattern = ".tar.gz$", full.names = T)
+  # if(length(old_packages) > 0){
+  #   message("Removing older compressed packages:")
+  #   for(old_package in old_packages) message(paste0("* ", old_package))
+  #   file.remove(old_package)
+  # }
   # if this has na error we have to change the name bakc so we don't think it's been updated
   devtools::document(my_dir)
-  cat("Expect the following inert warning:\n'/usr/lib/R/bin/R'/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file --no-environ --no-save --no-restore --quiet CMD build  \
-          '<some path>' --no-resave-data --no-manual \n")
-  build_location = build(my_dir, path = my_dir)
+  # cat("Expect the following inert warning:\n'/usr/lib/R/bin/R'/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file --no-environ --no-save --no-restore --quiet CMD build  \
+  #         '<some path>' --no-resave-data --no-manual \n")
+  # build_location = devtools::build(my_dir, path = my_dir)
 
-  detach_package(package_name)
-  remove_package_from_all_libraries(package_name)
-  successful_install = tryCatch({
-    utils::install.packages(build_location, repos = NULL, type="source")
-    TRUE
-  }, warning = function(w) {
-    FALSE
-  }, error = function(e) {
-    FALSE
-  })
-  
-  if(successful_install){
-    cat(paste0(package_name, " version ", my_version, " was loaded successfully. Must restart RStudio Session for updates in documentation to go into effect.")) # see https://github.com/hadley/devtools/issues/419
-  } else {
-    if(BGVLABPIPE_VERSION == my_version){
-      warning(paste0("Could not install update of package, ", package_name, " v", my_version ,". Older version of ", old_version_string," is still installed."))
-    } else {
-      warning(paste0("Could not install package ", package_name, " v", my_version ,". Older package, ", old_version_string,", is still installed."))
-    }
-    # need to replace the old Version in the description file since we failed to modify it.
-    if(version_line %>% is_not_null){
-      description_lines[version_line] = old_version_string
-      writeLines(description_lines, con = description_file_path, sep = "\n", useBytes = TRUE)
-    }
-  }
+  # detach_package(package_name)
+  # remove_package_from_all_libraries(package_name)
+  # successful_install = tryCatch({
+  #   utils::install.packages(build_location, repos = NULL, type="source")
+  #   TRUE
+  # }, warning = function(w) {
+  #   FALSE
+  # }, error = function(e) {
+  #   FALSE
+  # })
+  # 
+  # if(successful_install){
+  #   cat(paste0(package_name, " version ", my_version, " was loaded successfully. Must restart RStudio Session for updates in documentation to go into effect.")) # see https://github.com/hadley/devtools/issues/419
+  # } else {
+  #   warning(paste0("Could not install package ", package_name, " v", my_version ,". Older package, ", old_version_string,", is still installed."))
+  #   # need to replace the old Version in the description file since we failed to modify it.
+  #   if(!is.null(version_line)){
+  #     description_lines[version_line] = old_version_string
+  #     writeLines(description_lines, con = description_file_path, sep = "\n", useBytes = TRUE)
+  #   }
+  # }
 }
