@@ -143,7 +143,7 @@ get_package_version_listed_in_description = function(my_dir){
 #   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/binfotron", 
 #   should_build = TRUE) # since this package is on gitlab I can't do git install try install_gitlab(ref="tag"), can I do a certain version
 # 
-# assemble_package(package_name = "housekeeping", my_version = "0.0-09",
+# assemble_package(package_name = "housekeeping", my_version = "0.0-10",
 #                  my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 # 
 # In terminal:
@@ -151,7 +151,7 @@ get_package_version_listed_in_description = function(my_dir){
 # cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
 # my_comment="Added tar package."
 # git commit -am "$my_comment"; git push
-# git tag -a 0.0-04 -m "$my_comment"; git push -u origin --tags
+# git tag -a 0.0-10 -m "$my_comment"; git push -u origin --tags
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # assemble_package
