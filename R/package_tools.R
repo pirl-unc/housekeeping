@@ -143,7 +143,7 @@ get_package_version_listed_in_description = function(my_dir){
 #   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/binfotron", 
 #   should_build = TRUE) # since this package is on gitlab I can't do git install try install_gitlab(ref="tag"), can I do a certain version
 # 
-# assemble_package(package_name = "housekeeping", my_version = "0.0-04",
+# assemble_package(package_name = "housekeeping", my_version = "0.0-09",
 #                  my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 # 
 # In terminal:
@@ -151,7 +151,7 @@ get_package_version_listed_in_description = function(my_dir){
 # cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
 # my_comment="Added tar package."
 # git commit -am "$my_comment"; git push
-# git tag -a 0.0-03 -m "$my_comment"; git push -u origin --tags
+# git tag -a 0.0-04 -m "$my_comment"; git push -u origin --tags
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # assemble_package
@@ -213,15 +213,16 @@ assemble_package = function(
       file.remove(old_package)
     }
   }
-  # if this has na error we have to change the name bakc so we don't think it's been updated
+
+  detach_package(package_name)
+  remove_package_from_all_libraries(package_name)
+  
   devtools::document(my_dir)
   
   if (should_build){
     
     build_location = devtools::build(my_dir, path = my_dir)
     
-    detach_package(package_name)
-    remove_package_from_all_libraries(package_name)
     successful_install = tryCatch({
       utils::install.packages(build_location, repos = NULL, type="source")
       TRUE
