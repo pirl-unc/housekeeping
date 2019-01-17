@@ -25,37 +25,36 @@
 #'}
 #' 
 #' @export
-get_script_path <- function() {
-  debug_mode = FALSE
-  
+get_script_path <- function(debug_mode = FALSE) {
+
   cmdArgs = commandArgs(trailingOnly = FALSE)
   needle = "--file="
   match = grep(needle, cmdArgs)
-  if(debug_mode) cat(paste0("cmdArgs: ", cmdArgs, "\n"))
+  if(debug_mode) message(paste0("cmdArgs: ", cmdArgs, "\n"))
   
   if (length(match) > 0) {
     # Rscript
-    if(debug_mode) cat("Rscript\n")
+    if(debug_mode) message("Rscript\n")
     return(normalizePath(sub(needle, "", cmdArgs[match])))
   } else {
     ls_vars = ls(sys.frames()[[1]])
-    if(debug_mode) cat(paste0("ls_vars: ", ls_vars, "\n"))
+    if(debug_mode) message(paste0("ls_vars: ", ls_vars, "\n"))
     
     if ("fileName" %in% ls_vars) {
       # Source'd via RStudio
-      if(debug_mode) cat(paste0("Source'd via RStudio", "\n"))
+      if(debug_mode) message(paste0("Source'd via RStudio", "\n"))
       
       return(normalizePath(sys.frames()[[1]]$fileName)) 
     } else {
       # Source'd via R console
-      if(debug_mode) cat(paste0("Source'd R console", "\n"))
+      if(debug_mode) message(paste0("Source'd R console", "\n"))
       
       my_sys_frames = sys.frames()[[1]]
       if("ofile" %in% names(my_sys_frames)){
         return(normalizePath(my_sys_frames$ofile))
       } else {
         # Run via RStudio
-        if(debug_mode) cat(paste0("Run via RStudio", "\n"))
+        if(debug_mode) message(paste0("Run via RStudio", "\n"))
         return(rstudioapi::getActiveDocumentContext()$path)
       }
     }

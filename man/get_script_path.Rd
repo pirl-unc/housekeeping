@@ -4,7 +4,7 @@
 \alias{get_script_path}
 \title{Gets the path of the script that runs it}
 \usage{
-get_script_path()
+get_script_path(debug_mode = FALSE)
 }
 \value{
 Returns the path to the script that ran it

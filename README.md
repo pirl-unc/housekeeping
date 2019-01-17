@@ -108,5 +108,22 @@ Save lots of steps in making new packages
 * If should_build, builds the package to make tar.gz file
 * Tries to load the package.  If it doesn't work, the DESCRIPTION file goes back to the original version
 
+## Assembling this package
+In R:
+``` r
+assemble_package(package_name = "housekeeping", my_version = "0.0-12",
+  my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
+```
+In bash:
+``` bash
+cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
+my_comment="Added debug option to get_script_path."
+git commit -am "$my_comment"; git push origin master
+git tag -a 0.0-12 -m "$my_comment"; git push -u origin --tags
+```
 
+In R:
+``` r
+install_github("dbortone/housekeeping")
+```
 
