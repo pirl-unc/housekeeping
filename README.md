@@ -111,15 +111,15 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R:
 ``` r
-assemble_package(package_name = "housekeeping", my_version = "0.0-14",
+assemble_package(package_name = "housekeeping", my_version = "0.0-20",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 In bash:
 ``` bash
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
-my_comment="Trying to fix bug where detach_all_but_basic_packages wasn't included in the namespace."
+my_comment="Added sourced_file option to get_script_dir_path and added find_file_along_path."
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.0-14 -m "$my_comment"
+git tag -a 0.0-20 -m "$my_comment"
 git push -u origin --tags
 ```
 Restart R
