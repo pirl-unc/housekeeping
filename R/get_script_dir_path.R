@@ -58,18 +58,18 @@ get_script_dir_path <- function(debug_mode = FALSE, sourced_file = TRUE, include
     ls_vars = ls(sys.frames()[[1]])
     if(debug_mode) message(paste0("ls_vars: ", ls_vars, "\n"))
     
-    if ("fileName" %in% ls_vars) {
+    if ("fileName" %in% ls_vars) { # looks like this changed to 'filename' but no time to debug now...
       # Source'd via RStudio
       if(debug_mode) message(paste0("Source'd via RStudio", "\n"))
       
       return_dir_path = normalizePath(sys.frames()[[1]]$fileName)
       
     } else {
-      # Source'd via R console
-      if(debug_mode) message(paste0("Source'd R console", "\n"))
-      
       my_sys_frames = sys.frames()[[1]]
       if("ofile" %in% names(my_sys_frames)){
+        # Source'd via R console
+        if(debug_mode) message(paste0("Source'd R console", "\n"))
+        
         if (sourced_file){
           return_dir_path = getwd()
         } else {

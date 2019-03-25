@@ -111,20 +111,45 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R:
 ``` r
-assemble_package(package_name = "housekeeping", my_version = "0.0-20",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.0-21",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 In bash:
 ``` bash
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
-my_comment="Added sourced_file option to get_script_dir_path and added find_file_along_path."
+my_comment="get_package_version_listed_in_description can now handle missing description file by returning NA."
 git commit -am "$my_comment"; git push origin master
 git tag -a 0.0-20 -m "$my_comment"
 git push -u origin --tags
 ```
 Restart R
-In R:
+In R (local library, packrat library):
 ``` r
 devtools::install_github("DanteBortone/housekeeping")
 ```
+In bash also add change to the rstudio library for running on slurm:
+``` bash
+# load image in interactive area
+ssh dbortone@cv-shell.bioinf.unc.edu 
+
+# run it
+docker run --name bob -v /datastore:/datastore:shared -it dockerreg.bioinf.unc.edu:5000/r352-20190128:dsb1
+
+# install
+Rscript -e 'devtools::install_github("DanteBortone/housekeeping")'
+
+# save container as image from another terminal
+docker container ls
+docker commit bob dockerreg.bioinf.unc.edu:5000/r352-20190128:dsb1
+
+# save it so we can access from a node
+docker image save -o ~/scratch/r352-20190128_dsb1 dockerreg.bioinf.unc.edu:5000/r352-20190128:dsb1
+exit
+
+# enter a new node to load the saved image and push it
+srun --nodelist r820-docker-2-0.local --pty -c 1 --mem 1g -p docker bash
+docker image load -i r352-20190128_dsb1
+docker push dockerreg.bioinf.unc.edu:5000/r352-20190128:dsb1
+```
+
 

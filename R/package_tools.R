@@ -141,19 +141,24 @@ matches_loaded_version = function(
 get_package_version_listed_in_description = function(my_dir){
   
   description_file_path = file.path(my_dir, "DESCRIPTION")
-  description_lines = readLines(description_file_path)# open connection
-  version_line = NULL
-  for(line_index in 1:length(description_lines)){
-    this_line = description_lines[line_index]
-    if(grepl("^Version:", this_line)){
-      version_line = line_index
-      version_string = this_line
-      break
-    } else {
-      version_string = NULL
+  my_version = NA
+  
+  if(file.exists(description_file_path)){
+    description_lines = readLines(description_file_path)# open connection
+    version_line = NULL
+    for(line_index in 1:length(description_lines)){
+      this_line = description_lines[line_index]
+      if(grepl("^Version:", this_line)){
+        version_line = line_index
+        version_string = this_line
+        break
+      } else {
+        version_string = NULL
+      }
     }
+    my_version = gsub("Version: ", "", version_string)
   }
-  my_version = gsub("Version: ", "", version_string)
+
   return(my_version)
 }
 
