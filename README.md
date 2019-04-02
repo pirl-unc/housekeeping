@@ -111,15 +111,15 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R:
 ``` r
-housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.0-21",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.0-22",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 In bash:
 ``` bash
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
-my_comment="get_package_version_listed_in_description can now handle missing description file by returning NA."
+my_comment="Rebuilding with stringr 1.4.0.  I'm getting package conflict errors."
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.0-20 -m "$my_comment"
+git tag -a 0.0-22 -m "$my_comment"
 git push -u origin --tags
 ```
 Restart R
