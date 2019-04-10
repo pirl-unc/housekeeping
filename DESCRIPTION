@@ -9,7 +9,6 @@ Authors@R:
            email = "dantebortone@gmail.com")
 Depends:
     magrittr,
-    stringr,
     devtools,
     utils,
     rstudioapi

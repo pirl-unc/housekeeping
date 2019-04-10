@@ -111,16 +111,15 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R:
 ``` r
-housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.0-22",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.0-30",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 In bash:
 ``` bash
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
-my_comment="Rebuilding with stringr 1.4.0.  I'm getting package conflict errors."
+my_comment="Removing stringr dependencies so other users don't get the stringr conflicts"
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.0-22 -m "$my_comment"
-git push -u origin --tags
+git tag -a 0.0-30 -m "$my_comment"; git push -u origin --tags
 ```
 Restart R
 In R (local library, packrat library):
