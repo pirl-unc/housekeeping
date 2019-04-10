@@ -111,13 +111,13 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R:
 ``` r
-housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.0-31",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.0-32",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 In bash:
 ``` bash
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
-my_comment="Removing stringr dependencies so other users don't get the stringr conflicts"
+my_comment="Rurther removing stringr"
 git commit -am "$my_comment"; git push origin master
 git tag -a 0.0-31 -m "$my_comment"; git push -u origin --tags
 ```
