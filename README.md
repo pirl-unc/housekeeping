@@ -111,7 +111,7 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R:
 ``` r
-housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.0-32",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.0-33",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 In bash:
@@ -119,7 +119,7 @@ In bash:
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
 my_comment="Rurther removing stringr"
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.0-31 -m "$my_comment"; git push -u origin --tags
+git tag -a 0.0-32 -m "$my_comment"; git push -u origin --tags
 ```
 Restart R
 In R (local library, packrat library):

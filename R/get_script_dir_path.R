@@ -79,7 +79,8 @@ get_script_dir_path <- function(debug_mode = FALSE, sourced_file = TRUE, include
         # Run via RStudio
         if(debug_mode) message(paste0("Run via RStudio", "\n"))
         
-        return_dir_path = rstudioapi::getActiveDocumentContext()$path
+        # sourced editor
+        return_dir_path = rstudioapi::getSourceEditorContext()$path
       }
     }
   }
