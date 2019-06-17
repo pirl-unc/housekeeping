@@ -1,5 +1,5 @@
 Package: housekeeping
-Version: 0.1-01
+Version: 0.1-03
 Title: Basic Debugging and Package Building Tasks
 Description: Tools for debugging, script path finding and package maintanance.
 Authors@R: 

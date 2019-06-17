@@ -111,15 +111,15 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R:
 ``` r
-housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.1-01",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.1-03",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 In bash:
 ``` bash
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
-my_comment="Added binfotron annotation file here so the tools could be used in dataset_prep."
+my_comment="Having taggin issues."
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.1-01 -m "$my_comment"; git push -u origin --tags
+git tag -a 0.1-03 -m "$my_comment"; git push -u origin --tags
 ```
 Restart R
 In R (local library, packrat library):
