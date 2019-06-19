@@ -14,9 +14,16 @@
 detach_all_but_basic_packages = function(){
   # clear everything http://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
   basic.packages <- c("package:stats","package:graphics","package:grDevices","package:utils","package:datasets","package:methods","package:base")
+  
+  last.list = "dummy_init_text"
   package.list <- search()[ifelse(unlist(gregexpr("package:",search()))==1,TRUE,FALSE)]
   package.list <- setdiff(package.list,basic.packages)
-  if (length(package.list)>0)  for (package in package.list) detach(package, character.only=TRUE, unload = T)
+  while(!identical(last.list, package.list) & length(package.list) > 0){
+    last.list = package.list
+    for (package in package.list) suppressWarnings(detach(package, character.only=TRUE, unload = T))
+    package.list <- search()[ifelse(unlist(gregexpr("package:",search()))==1,TRUE,FALSE)]
+    package.list <- setdiff(package.list,basic.packages)
+  }
 }
 
 
