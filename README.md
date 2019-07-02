@@ -109,7 +109,7 @@ Save lots of steps in making new packages
 * Tries to load the package.  If it doesn't work, the DESCRIPTION file goes back to the original version
 
 ## Assembling this package
-In R:
+In R: 
 ``` r
 housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.1-05",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
