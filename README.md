@@ -111,45 +111,60 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R: 
 ``` r
-housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.1-05",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.1-06",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
+
 In bash:
 ``` bash
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
-my_comment="Tagging issues."
+my_comment="Swapped is_path_to_file in binfortron for file_exists."
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.1-05 -m "$my_comment"; git push -u origin --tags
+git tag -a 0.1-06 -m "$my_comment"; git push -u origin --tags
 ```
+
 Restart R
 In R (local library, packrat library):
 ``` r
-devtools::install_github("DanteBortone/housekeeping")
+devtools::install_bitbucket("BGV_DBortone/housekeeping")
 packrat::snapshot(infer.dependencies = F)
 ```
+
 In bash also add change to the rstudio library for running on slurm:
 ``` bash
 # load image in interactive area
 ssh dbortone@cv-shell.bioinf.unc.edu 
 
-# run it
-docker run --name bob -v /datastore:/datastore:shared -it dockerreg.bioinf.unc.edu:5000/r352-20190128:dsb1
+# if you need to get the image from Sai...
+download link
+gunzip r352-114-v4-seurat-umap_latest.tar.gz
+chmod ugo+x r352-114-v4-seurat-umap_latest.tar # necessary?
+srun --pty -c 1 --mem 1g -w r820-docker-2-0.local  -p docker bash
+cat r352-114-v4-seurat-umap_latest.tar | docker image load
 
-# install
-Rscript -e 'devtools::install_github("DanteBortone/housekeeping")'
+docker tag r352-114-v4-seurat-umap:latest dockerreg.bioinf.unc.edu:5000/r352-114-v4-seurat-umap:latest
+
+# run it
+docker run --name bob --rm -v /datastore:/datastore:shared -it dockerreg.bioinf.unc.edu:5000/r352-114-v4-seurat-umap:latest bash
+
+
+# install 
+Rscript -e 'devtools::install_github("rstudio/rstudioapi")'
+Rscript -e 'devtools::install_bitbucket("BGV_DBortone/housekeeping")'
 
 # save container as image from another terminal
 docker container ls
-docker commit bob dockerreg.bioinf.unc.edu:5000/r352-20190128:dsb1
+docker commit bob dockerreg.bioinf.unc.edu:5000/r352-114-v4-seurat-umap:dsb1
 
 # save it so we can access from a node
-docker image save -o ~/scratch/r352-20190128_dsb1 dockerreg.bioinf.unc.edu:5000/r352-20190128:dsb1
+docker image save -o r352-114-v4-seurat-umap_dsb1 dockerreg.bioinf.unc.edu:5000/r352-114-v4-seurat-umap:dsb1
 exit
+# couldn't get the docker nodes to see the image no matter how I pushed or pulled
+srun --pty -c 1 --mem 1g -w r820-docker-2-0.local  -p docker bash
+cat r352-114-v4-seurat-umap_dsb1 | docker image load
+docker push dockerreg.bioinf.unc.edu:5000/r352-114-v4-seurat-umap:dsb1
+singularity pull docker://dockerreg.bioinf.unc.edu:5000/r352-114-v4-seurat-umap:dsb1
 
-# enter a new node to load the saved image and push it
-srun --nodelist r820-docker-2-0.local --pty -c 1 --mem 1g -p docker bash
-docker image load -i r352-20190128_dsb1
-docker push dockerreg.bioinf.unc.edu:5000/r352-20190128:dsb1
 ```
 
 

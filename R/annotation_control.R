@@ -188,7 +188,7 @@ get_annotation_path = function(my_path) {
   # finds THE .note. file in the folder and returns the path
   # assumes there is only one .note. file in each folder
   
-  if(is_path_to_file(my_path)){
+  if(file_test("-f", my_path)){
     # return path to the folder
     my_path = dirname(my_path)
     
