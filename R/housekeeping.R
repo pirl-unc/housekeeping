@@ -2,7 +2,7 @@
 #'
 #' The housekeeping package provides tools for debugging, script path finding and package maintanance.
 #' 
-#' @import devtools rstudioapi magrittr
+#' @import devtools rstudioapi magrittr checkmate
 #' 
 #' @keywords internal
 "_PACKAGE"

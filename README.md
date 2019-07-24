@@ -111,16 +111,16 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R: 
 ``` r
-housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.1-06",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.1-07",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 
 In bash:
 ``` bash
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
-my_comment="Swapped is_path_to_file in binfortron for file_exists."
+my_comment="Added checkmate to @import."
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.1-06 -m "$my_comment"; git push -u origin --tags
+git tag -a 0.1-07 -m "$my_comment"; git push -u origin --tags
 ```
 
 Restart R
