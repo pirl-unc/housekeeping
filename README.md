@@ -118,7 +118,7 @@ housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.1-
 In bash:
 ``` bash
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
-my_comment="Added checkmate to @import."
+my_comment="assembled package."
 git commit -am "$my_comment"; git push origin master
 git tag -a 0.1-10 -m "$my_comment"; git push -u origin --tags
 ```
