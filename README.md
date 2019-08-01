@@ -111,16 +111,16 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R: 
 ``` r
-housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.1-10",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.1-12",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 
 In bash:
 ``` bash
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
-my_comment="assembled package."
+my_comment="tagging issues."
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.1-10 -m "$my_comment"; git push -u origin --tags
+git tag -a 0.1-12 -m "$my_comment"; git push -u origin --tags
 ```
 
 Restart R
