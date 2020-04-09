@@ -123,11 +123,9 @@ git commit -am "$my_comment"; git push origin master
 git tag -a 0.2-00 -m "$my_comment"; git push -u origin --tags
 ```
 
-Restart R
-In R (local library, packrat library):
+In R:
 ``` r
-devtools::install_github("DanteBortone/housekeeping")
-packrat::snapshot(infer.dependencies = F)
+devtools::install_github("Benjamin-Vincent-Lab/housekeeping")
 ```
 
 
