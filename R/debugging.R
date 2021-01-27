@@ -129,5 +129,95 @@ function_to_function = function(
 
 
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# report_df_values
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' @title Turns all df or dt columns into factors and reports the counts for each. 
+#' 
+#' @param my_df data.frame or data.table from which to report values
+#' @param report_columns Vector of columns names to check. Will default to the names in my_df.
+#' @param maxsum What is the max number of factors to report before goes to summary
+#' 
+#' @return No return value. Outputs message reporting the factors and counts of each column.
+#' 
+#' @export
+report_df_values = function(my_df, report_columns = NULL, maxsum = 10){
+  if(is.null(report_columns)){
+    report_columns = names(my_df)
+  }
+  message("reporting value:count")
 
+  for(this_name in report_columns){
+    message()
+    message(this_name)
+    my_summary = summary(factor(my_df[[this_name]]), maxsum = maxsum)
+    my_out = ""
+    for (findex in 1:length(my_summary)){
+      my_out = paste0(my_out, names(my_summary)[findex], ":", my_summary[findex], "; ")
+    }
+    my_out = gsub("; $", "", my_out)
+    my_out = gsub("TRUE", "T", my_out)
+    my_out = gsub("FALSE", "F", my_out)
+    my_out = gsub("Complete Response", "CR", my_out)
+    my_out = gsub("Partial Response", "PR", my_out)
+    my_out = gsub("Stable Disease", "SD", my_out)
+    my_out = gsub("Progressive Disease", "PD", my_out)
+    message(my_out)
+    message("")
+  }
+}
+
+
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# report_environment_var
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' @title Puts all of the function variables in a specified environment
+#' 
+#' @param my_env environment into which the function variables will be put
+#' @param skip_classes vector of classes to skip 
+#' 
+#' @return No return value. Outputs message reporting the environment variables
+#' 
+#' @export
+report_environment_var = function(my_env, skip_classes = c("function", "data.frame", "data.table", "environment")){
+  message()
+  message("----------------------------")
+  message("Environment variables ")
+  message("----------------------------")
+  message()
+  all_val_names = ls(envir=my_env)
+  invisible(lapply(ls(envir=my_env), function(var_name){
+    my_value = eval(parse(text=var_name), envir = my_env)
+    message(var_name);
+    my_class = class(my_value)
+    message(paste0("class: ", my_class));
+    if(!(my_class %in% c(skip_classes))){
+      tryCatch(
+        {
+          for (value_index in 1:length(my_value)){
+            my_name = names(my_value)[value_index]
+            if (!is.null(my_name)){
+              message(paste0("  ", my_name, ": ", my_value[value_index]));
+            } else {
+              message(as.character(my_value[value_index]))
+            }
+          }
+        },
+        error=function(cond) {
+          message(paste0("Error: ", cond))
+        },
+        warning=function(cond) {
+          message(paste0("Warning: ", cond))
+        }
+      )
+    } else {
+      message("Skipping '", my_class, "' classes.")
+    }
+    message()
+  }))
+  message("----------------------------")
+  message()
+}
 

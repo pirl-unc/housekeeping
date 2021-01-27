@@ -4,8 +4,7 @@
 \alias{cjust}
 \title{Applies center justification to my_string.}
 \usage{
-cjust(my_string, filler = " ", total_char = get_annotation_width(),
-  pad = " ")
+cjust(my_string, filler = " ", total_char = get_annotation_width(), pad = " ")
 }
 \arguments{
 \item{my_string}{String to be centereded}

@@ -125,7 +125,7 @@ git tag -a 0.2-01 -m "$my_comment"; git push -u origin --tags
 
 In R:
 ``` r
-devtools::install_github("Benjamin-Vincent-Lab/housekeeping", ref="0.2-00")
+devtools::install_github("Benjamin-Vincent-Lab/housekeeping", ref="0.2-01")
 ```
 
 

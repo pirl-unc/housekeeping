@@ -4,8 +4,11 @@
 \alias{get_script_dir_path}
 \title{Gets the path of the script that runs it}
 \usage{
-get_script_dir_path(debug_mode = FALSE, sourced_file = TRUE,
-  include_file_name = FALSE)
+get_script_dir_path(
+  debug_mode = FALSE,
+  sourced_file = TRUE,
+  include_file_name = FALSE
+)
 }
 \arguments{
 \item{debug_mode}{Boolen on whether detailed messages should be output to help debug the code}

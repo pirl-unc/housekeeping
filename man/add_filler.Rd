@@ -4,8 +4,7 @@
 \alias{add_filler}
 \title{Adds a filler to the text.}
 \usage{
-add_filler(my_string, filler = "-",
-  total_char = get_annotation_indention())
+add_filler(my_string, filler = "-", total_char = get_annotation_indention())
 }
 \arguments{
 \item{my_string}{String to have filler added to it.}

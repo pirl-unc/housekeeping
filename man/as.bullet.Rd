@@ -4,8 +4,13 @@
 \alias{as.bullet}
 \title{Formats text as a bullet.}
 \usage{
-as.bullet(string, level = 1, width = get_annotation_width(),
-  indentation = "  ", my_bullet = "* ")
+as.bullet(
+  string,
+  level = 1,
+  width = get_annotation_width(),
+  indentation = "  ",
+  my_bullet = "* "
+)
 }
 \arguments{
 \item{string}{The string of text that should be bulleted over.}
