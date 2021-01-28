@@ -216,7 +216,6 @@ assemble_package = function(
   my_dir, 
   should_build = FALSE
 ){
-  # library(magrittr)
   # need to update version on description file  
   description_file_path = file.path(my_dir, "DESCRIPTION")
   description_lines = readLines(description_file_path)# open connection

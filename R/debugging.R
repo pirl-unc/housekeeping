@@ -93,8 +93,7 @@ function_to_function = function(
   fun_name_2, 
   to_env = globalenv()
 ){
-  # library(utils)
-  
+
   fun_text = utils::capture.output(eval(parse(text = fun_name_1)))
   
   fun_text = trimws(fun_text)
