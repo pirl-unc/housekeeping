@@ -131,7 +131,7 @@ a = function(...){
 #' 
 #' @export
 configure_readme = function( output_dir, file_prefix ){
-  README_PATH = file.path(output_dir, paste0(file_prefix, "_readme.txt"))
+  README_PATH <<- file.path(output_dir, paste0(file_prefix, "_readme.txt"))
   
   if(file.exists(README_PATH)) file.remove( README_PATH )
   
