@@ -118,10 +118,6 @@ a = function(...){
   cat(my_output)
 }
 
-#Initialize README_PATH here so updating in configure_readme 
-# updates in package environment, not global environment
-README_PATH = NULL
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # configure_readme
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
