@@ -4,18 +4,26 @@
 #' @title Goes up path component and looks for the file_name in each directory.
 #' 
 #' @param my_path character string path to search along
-#' @param file_name character string to search for
+#' @param file_name character string to search for, will match partial file names and return first match if multiple are found
 #' 
 #' @return Path to the file if it's along the path provided
 #' 
 #' @export
 find_file_along_path = function(my_path, file_name){
   return_path = NULL
-  while(nchar(my_path) > 0){
-    if(file_name %in% list.files(my_path)){
-      return_path = file.path(my_path, file_name)
+  last_path <- NULL
+  while(!identical(last_path, my_path)){
+    last_path = my_path
+    files <- list.files(my_path,file_name, full.names=TRUE)
+    if(length(files) > 0){
+      if(length(files) > 1) warning("More than one file found matching ", file_name, ". Using first match.")
+      return_path <- files[1]
       break
     }
+    # if(file_name %in% list.files(my_path)){
+    #   return_path = file.path(my_path, file_name)
+    #   break
+    # }
     my_path = dirname(my_path)
   }
   

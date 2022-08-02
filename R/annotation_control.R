@@ -160,6 +160,7 @@ cjust = function(
 #' 
 #' @export
 get_note_extension = function(){
+  warning("Method get_note_extension has been depricated after switching to more common readme files.")
   return(".note.txt")
 }
 
@@ -178,14 +179,15 @@ get_note_extension = function(){
 #' Assumes there is only one '.note.' file in each folder.
 #' 
 #' @param my_path The path to a folder or a file.
+#' @param note_regex The unique portion of the name to use for the annotation file, defaults to "^readme"
 #' 
 #' @return The path to the found annotation file.
 #' 
 #' @export
-get_annotation_path = function(my_path) {
-  # takes path to a folder of a file in a folder
-  # finds THE .note. file in the folder and returns the path
-  # assumes there is only one .note. file in each folder
+get_annotation_path = function(my_path, note_regex="^readme") {
+  # takes path to a folder or a file in a folder
+  # finds THE file in the folder matching the note_regex and returns the path
+  # assumes there is only one file matching note_regex in each folder
   
   if(file_test("-f", my_path)){
     # return path to the folder
@@ -194,8 +196,11 @@ get_annotation_path = function(my_path) {
   }
   
   folder_files = list.files(my_path)
-  found_index = grep(get_note_extension(), tolower(folder_files), fixed = T)
+  found_index = grep(tolower(note_regex), tolower(folder_files), fixed = T)
+  #if no file found matching note_regex pattern, check for file matching ^readme pattern
+  #this may be redundant due to note_regex's default value, but just in case someone passes in a value for note_regex that is not "readme" and that file can't be found ...
   if(length(found_index) < 1){
+    message("Filename ", note_regex, " not found. Searching now for '^readme'.")
     found_index = grep("^readme", tolower(folder_files))
   }
   
@@ -249,25 +254,26 @@ format_imported_annotation = function(
 #' @title Get annotation text at a path location.
 #' 
 #' @param my_path Path to either a file next to or a folder containing the annotation file.
+#' @param note_regex Reguar expression of file name to look for in my_path
 #' 
 #' @return The character vector of the imported annotation.
 #' 
 #' @export
-import_annotation = function(my_path){ # file or folder
+import_annotation = function(my_path, note_regex="^readme"){ # file or folder
   orig_path = my_path
-  # assumes there is only one note file in each folder
-  my_path  = get_annotation_path(my_path)
+  # assumes there is only one readme file in each folder
+  my_path  = get_annotation_path(my_path, note_regex)
     
   if (length(my_path) > 0) {
     # annotation = read_tsv(my_path, col_names = FALSE, trim_ws = FALSE)[[1]]
     if (length(my_path) > 1) {
-      warning(paste("Multiple annotations were found: ", my_path, "Proceeding with the first one...", sep = "\n"))
+      warning(paste("Multiple annotations were found: ", paste(my_path,collapse="\n"), "Proceeding with the first one...", sep = "\n"))
       my_path = my_path[1]
     }
     annotation = readLines(my_path, warn = FALSE)
     
     return(format_imported_annotation(annotation))
-    } else {
+  } else {
     cat(paste0("No annotation file found to accompany ", orig_path,".\n"))
     return("")
   }
