@@ -4,7 +4,7 @@
 \alias{get_annotation_path}
 \title{Get the path to the annotation file.}
 \usage{
-get_annotation_path(my_path, note_regex = "^readme")
+get_annotation_path(my_path, note_regex = "readme")
 }
 \arguments{
 \item{my_path}{The path to a folder or a file.}

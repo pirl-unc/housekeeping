@@ -184,7 +184,7 @@ get_note_extension = function(){
 #' @return The path to the found annotation file.
 #' 
 #' @export
-get_annotation_path = function(my_path, note_regex="^readme") {
+get_annotation_path = function(my_path, note_regex="readme") {
   # takes path to a folder or a file in a folder
   # finds THE file in the folder matching the note_regex and returns the path
   # assumes there is only one file matching note_regex in each folder
@@ -259,7 +259,7 @@ format_imported_annotation = function(
 #' @return The character vector of the imported annotation.
 #' 
 #' @export
-import_annotation = function(my_path, note_regex="^readme"){ # file or folder
+import_annotation = function(my_path, note_regex="readme"){ # file or folder
   orig_path = my_path
   # assumes there is only one readme file in each folder
   my_path  = get_annotation_path(my_path, note_regex)
