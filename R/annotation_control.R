@@ -179,7 +179,7 @@ get_note_extension = function(){
 #' Assumes there is only one '.note.' file in each folder.
 #' 
 #' @param my_path The path to a folder or a file.
-#' @param note_regex The unique portion of the name to use for the annotation file, defaults to "^readme"
+#' @param note_regex The unique portion of the name to use for the annotation file, defaults to "readme"
 #' 
 #' @return The path to the found annotation file.
 #' 
@@ -199,9 +199,9 @@ get_annotation_path = function(my_path, note_regex="readme") {
   found_index = grep(tolower(note_regex), tolower(folder_files), fixed = T)
   #if no file found matching note_regex pattern, check for file matching ^readme pattern
   #this may be redundant due to note_regex's default value, but just in case someone passes in a value for note_regex that is not "readme" and that file can't be found ...
-  if(length(found_index) < 1){
-    message("Filename ", note_regex, " not found. Searching now for '^readme'.")
-    found_index = grep("^readme", tolower(folder_files))
+  if(length(found_index) < 1 && note_regex != "readme"){
+    message("Filename ", note_regex, " not found. Searching now for 'readme'.")
+    found_index = grep("readme", tolower(folder_files))
   }
   
   return(file.path(my_path, folder_files[found_index]))

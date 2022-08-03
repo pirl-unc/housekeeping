@@ -9,7 +9,7 @@ get_annotation_path(my_path, note_regex = "readme")
 \arguments{
 \item{my_path}{The path to a folder or a file.}
 
-\item{note_regex}{The unique portion of the name to use for the annotation file, defaults to "^readme"}
+\item{note_regex}{The unique portion of the name to use for the annotation file, defaults to "readme"}
 }
 \value{
 The path to the found annotation file.
