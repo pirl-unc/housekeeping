@@ -9,7 +9,7 @@ find_file_along_path(my_path, file_name)
 \arguments{
 \item{my_path}{character string path to search along}
 
-\item{file_name}{character string to search for}
+\item{file_name}{character string to search for, will match partial file names and return first match if multiple are found}
 }
 \value{
 Path to the file if it's along the path provided

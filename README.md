@@ -111,7 +111,7 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R: 
 ``` r
-housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.2-01",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.3.2",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 
@@ -120,12 +120,12 @@ In bash:
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
 my_comment="Updated roxygen and reassembled due a failure to properly export packages, namely 'find_folder_along_path'."
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.2-01 -m "$my_comment"; git push -u origin --tags
+git tag -a 0.3.2 -m "$my_comment"; git push -u origin --tags
 ```
 
 In R:
 ``` r
-devtools::install_github("Benjamin-Vincent-Lab/housekeeping", ref="0.2-01")
+devtools::install_github("Benjamin-Vincent-Lab/housekeeping", ref="0.3.2")
 ```
 
 
