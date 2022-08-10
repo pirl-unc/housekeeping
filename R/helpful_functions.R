@@ -108,8 +108,8 @@ move_to_position = function(
 a <- function(...){
   my_output = paste0(...)
   my_output = paste0(my_output, "\n")
-  if (!is.null(readme_path)) {
-    cat(my_output, file = readme_path, append = TRUE)
+  if (!is.null(README_PATH)) {
+    cat(my_output, file = README_PATH, append = TRUE)
   }
   cat(my_output)
 }
