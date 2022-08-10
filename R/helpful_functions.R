@@ -172,15 +172,15 @@ list_missing_columns = function(dat, col_names){
 #' @description 
 #' Looks along the script path to find the Nextflow 'log' folder and looks for the script name for the last Nextflow wd
 #'
-#' @param dat data to look for column names within
-#' @param col_names vector representing full set of column names expected
+#' @param script_path path to being traversing down to look for a log folder
+#' @param script_name name of script to look for in the Nextflow log
+#' @param set_file_pane boolean indicating whether you'd like to have rstudio's file borwser pane directed to the wd
 #' 
 #' @return vector of missing column names ( also printed to console )
 #' 
 #' @export
 #' 
 use_nextflow_wd = function(script_path, script_name, set_file_pane=F){
-  script_name = gsub(".R", "", basename(script_path))
   log_dir = find_file_along_path(script_path,'logs')
   if (!is.null(log_dir)){
     log_path = file.path(find_file_along_path(script_path,'logs'), ".nextflow.log")

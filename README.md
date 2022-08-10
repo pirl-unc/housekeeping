@@ -119,21 +119,21 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R: 
 ``` r
-housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.3.3",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.3.4",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 
 In bash:
 ``` bash
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
-my_comment="Updated roxygen and reassembled due a failure to properly export packages, namely 'find_folder_along_path'."
+my_comment="use_nextflow_wd wasn't being found under housekeeping functions."
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.3.3 -m "$my_comment"; git push -u origin --tags
+git tag -a 0.3.4 -m "$my_comment"; git push -u origin --tags
 ```
 
 In R:
 ``` r
-devtools::install_github("Benjamin-Vincent-Lab/housekeeping", ref="0.3.3")
+devtools::install_github("Benjamin-Vincent-Lab/housekeeping", ref="0.3.4")
 ```
 
 
