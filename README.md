@@ -60,7 +60,7 @@ function_to_function(fun_name_1 = "fun_b", fun_name_2 = "fun_a")
 ## Finding script locations  
 
 ### get_script_path  
-It's often helpful for scripts to know where they are.  This way they can write files in their same folder even if that folder is moved.  This script is an attempt to do that.  It should work if the script containing get_script_path is sourced from: an Rscript, RStudio console, or RStudio source.  It should also work if run through RStudio.  If called from a function it will take the path from the script that called it.  Also if it is sourced form a source, it will take the path of the parent source.  For use in functions I use it like this:  
+It's often helpful for scripts to know where they are so they can write files relative to their own location. This script does just that.  It will work if the script containing get_script_path is sourced from: an Rscript, RStudio console, RStudio source or RStudio.  If called from a function it will take the path from the script that called it.  Also if it is sourced form a source, it will take the path of the parent source.  For use in functions I use it like this:  
 
 ``` r
 sample_script_path = get_script_path()
@@ -72,9 +72,17 @@ do_something = function(script_path = sample_script_path){
 This way the path will be assigned to the function when the function is sourced.
 
 I used this SO question as a starting point: [rscript-determine-path-of-the-executing-script](https://stackoverflow.com/questions/1815606/rscript-determine-path-of-the-executing-script)
-
-
-
+  
+### find_folder_along_path
+Goes up path component and looks for the folder_name in each directory.  
+  
+### find_folder_along_path  
+Goes up path component and looks for the folder_name in each directory.  
+  
+### use_nextflow_wd  
+Tries to set the wd to the wd found in the Nextflow log.  
+  
+  
 ## Package Tools
 
 ### detach_package  
@@ -111,7 +119,7 @@ Save lots of steps in making new packages
 ## Assembling this package
 In R: 
 ``` r
-housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.3.2",
+housekeeping::assemble_package(package_name = "housekeeping", my_version = "0.3.3",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping")
 ```
 
@@ -120,12 +128,12 @@ In bash:
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/housekeeping
 my_comment="Updated roxygen and reassembled due a failure to properly export packages, namely 'find_folder_along_path'."
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.3.2 -m "$my_comment"; git push -u origin --tags
+git tag -a 0.3.3 -m "$my_comment"; git push -u origin --tags
 ```
 
 In R:
 ``` r
-devtools::install_github("Benjamin-Vincent-Lab/housekeeping", ref="0.3.2")
+devtools::install_github("Benjamin-Vincent-Lab/housekeeping", ref="0.3.3")
 ```
 
 

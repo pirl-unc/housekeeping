@@ -165,10 +165,6 @@ get_note_extension = function(){
 }
 
 
-
-
-
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # get_annotation_path
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -197,7 +193,7 @@ get_annotation_path = function(my_path, note_regex="readme") {
   
   folder_files = list.files(my_path)
   found_index = grep(tolower(note_regex), tolower(folder_files), fixed = T)
-  #if no file found matching note_regex pattern, check for file matching ^readme pattern
+  #if no file found matching note_regex pattern, check for file matching readme pattern
   #this may be redundant due to note_regex's default value, but just in case someone passes in a value for note_regex that is not "readme" and that file can't be found ...
   if(length(found_index) < 1 && note_regex != "readme"){
     message("Filename ", note_regex, " not found. Searching now for 'readme'.")
@@ -206,8 +202,6 @@ get_annotation_path = function(my_path, note_regex="readme") {
   
   return(file.path(my_path, folder_files[found_index]))
 }
-
-
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -246,8 +240,6 @@ format_imported_annotation = function(
 }
 
 
-
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # import_annotation
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -279,12 +271,6 @@ import_annotation = function(my_path, note_regex="readme"){ # file or folder
   }
   
 }
-
-
-
-
-
-
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -337,8 +323,6 @@ as.header1 = function(title_text){
 }
 
 
-
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # as.header2
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -356,10 +340,6 @@ as.header2 = function(title_text){
   return(return_text)
   
 }
-
-
-
-
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -402,6 +382,7 @@ wrap_sentence <- function(
   return(fullsentence)
 }
 
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # break_sentence
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -442,7 +423,6 @@ break_sentence <- function(
   fullsentence = gsub("\\n$", "", fullsentence)
   return(fullsentence)
 }
-
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -494,7 +474,6 @@ as.bullet = function(
 }
 
 
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # as.footer
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -510,4 +489,3 @@ as.footer = function(my_string){
   return(rjust(my_string %>% rjust("-",  get_annotation_width())))
   
 }
-
