@@ -76,22 +76,21 @@ move_to_position = function(
   my_position
 ){
   
-  items_to_move = items_to_move[items_to_move %in% a_vector] # make sure items are there first
-  
-  
-  if(my_position > length(a_vector)){
+  items_to_move = items_to_move[items_to_move %in% a_vector]
+  if (my_position > length(a_vector)) {
     return_v = move_to_end(a_vector, items_to_move)
-  } else if (my_position < 2){
+  }
+  else if (my_position < 2) {
     return_v = move_to_front(a_vector, items_to_move)
-  } else {
-    a_vector = sapply(a_vector, function(x){paste0(x)})
-    a_vector = append(a_vector, items_to_move,  after = my_position - 1)
-    a_vector = a_vector[!(names(a_vector) %in% items_to_move)]
-    names(a_vector) = NULL
-    return_v = a_vector
+  }
+  else {
+    move_vector <- a_vector[which(a_vector %in% items_to_move)]
+    a_vector <- a_vector[!(a_vector %in% items_to_move)]
+    return_v <- append(a_vector, move_vector, after = min(length(a_vector), my_position - 
+                                                            1))
   }
   return(return_v)
-}
+}  
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
