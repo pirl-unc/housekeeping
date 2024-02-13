@@ -1,5 +1,6 @@
 The purpose of this package is to add tools that are needed for basic debugging and package manipulation tasks.  
 
+* This package was initially hosted at https://github.com/Benjamin-Vincent-Lab/housekeeping and was moved here on 2/13/2024
 
 ## Debugging  
 To debug it's often helpful to pull in the variables of a function into the global environment and work with the lines of a function there without using the debugger. To do this manulally you need to copy the called arguments, delete the commas and then do the same for the default function variables. If you are trying to get 3+ nested functions in, this can be annoying.   
