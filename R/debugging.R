@@ -192,7 +192,7 @@ report_environment_var = function(my_env, skip_classes = c("function", "data.fra
     message(var_name);
     my_class = class(my_value)
     message(paste0("class: ", my_class));
-    if(!(my_class %in% c(skip_classes))){
+    if(!(any(my_class %in% c(skip_classes)))){
       tryCatch(
         {
           for (value_index in 1:length(my_value)){
