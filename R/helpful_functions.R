@@ -109,9 +109,9 @@ a <- function(...){
   my_output = paste0(my_output, "\n")
   if (exists("README_PATH", envir = .GlobalEnv)) {
   	if (!is.null(README_PATH)) {
-	  	if (file.exists(README_PATH)) {
+  		if (README_PATH != "") {
 	      cat(my_output, file = README_PATH, append = TRUE)
-	  	}
+  		}
   	}
   }
   cat(my_output)
